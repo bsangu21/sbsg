@@ -17,38 +17,57 @@
             margin: 0;
             width: 100vw;
             height: 100vh;
+
             display: flex;
             justify-content: center;
             align-items: center;
+
             background: #1a1a1a;
+
             overflow: hidden;
+
             font-family: Arial, sans-serif;
         }
 
+        /* =================================
+           게임 공간
+           500 × 650
+        ================================= */
+
         #gameContainer {
             position: relative;
-            width: min(400px, 100vw);
-            aspect-ratio: 4 / 5;
+
+            width: min(500px, 100vw);
+
+            aspect-ratio: 500 / 650;
+
             overflow: hidden;
+
             background: #0d0d0d;
+
             border: 2px solid white;
         }
 
         canvas {
             position: absolute;
-            width: 100%;
-            height: 100%;
+
             left: 0;
             top: 0;
+
+            width: 100%;
+            height: 100%;
+
             background: #0d0d0d;
         }
 
-        /* =========================
+
+        /* =================================
            시작 화면
-        ========================= */
+        ================================= */
 
         #startScreen {
             position: absolute;
+
             z-index: 20;
 
             left: 0;
@@ -58,8 +77,11 @@
             height: 100%;
 
             display: flex;
+
             flex-direction: column;
+
             justify-content: center;
+
             align-items: center;
 
             background: rgba(0, 0, 0, 0.85);
@@ -67,42 +89,47 @@
 
         #startTitle {
             color: white;
-            font-size: 32px;
+
+            font-size: 36px;
+
             font-weight: bold;
-            margin-bottom: 30px;
+
+            margin-bottom: 35px;
         }
 
         #startButton {
-            width: 180px;
-            height: 65px;
+            width: 190px;
+            height: 70px;
 
             border: 3px solid white;
+
             border-radius: 15px;
 
             background: #222;
+
             color: white;
 
             font-size: 24px;
-            font-weight: bold;
 
-            cursor: pointer;
+            font-weight: bold;
         }
 
         #startButton:active {
             background: #555;
         }
 
-        /* =========================
-           조이스틱
-        ========================= */
+
+        /* =================================
+           작은 조이스틱
+        ================================= */
 
         #joystick {
             position: absolute;
 
             z-index: 10;
 
-            left: 20px;
-            bottom: 20px;
+            left: 15px;
+            bottom: 15px;
 
             width: 90px;
             height: 90px;
@@ -110,6 +137,7 @@
             border-radius: 50%;
 
             background: rgba(255, 255, 255, 0.15);
+
             border: 3px solid rgba(255, 255, 255, 0.5);
 
             display: none;
@@ -123,15 +151,24 @@
             position: absolute;
 
             width: 100%;
-            text-align: center;
 
-            bottom: -25px;
             left: 0;
 
+            bottom: -22px;
+
+            text-align: center;
+
             color: white;
-            font-size: 12px;
+
+            font-size: 10px;
+
             opacity: 0.7;
         }
+
+
+        /* =================================
+           조이스틱 손잡이
+        ================================= */
 
         #joystickKnob {
             position: absolute;
@@ -139,20 +176,22 @@
             left: 50%;
             top: 50%;
 
-            width: 45px;
-            height: 45px;
+            width: 40px;
+            height: 40px;
 
             transform: translate(-50%, -50%);
 
             border-radius: 50%;
 
             background: rgba(255, 255, 255, 0.7);
+
             border: 2px solid white;
         }
 
-        /* =========================
+
+        /* =================================
            패링 버튼
-        ========================= */
+        ================================= */
 
         #parryButton {
             position: absolute;
@@ -162,17 +201,19 @@
             right: 20px;
             bottom: 20px;
 
-            width: 100px;
-            height: 100px;
+            width: 90px;
+            height: 90px;
 
             border-radius: 50%;
 
             background: rgba(180, 0, 255, 0.45);
+
             border: 3px solid #d8b4fe;
 
             color: white;
 
-            font-size: 17px;
+            font-size: 15px;
+
             font-weight: bold;
 
             display: none;
@@ -184,9 +225,10 @@
             background: rgba(220, 100, 255, 0.8);
         }
 
-        /* =========================
+
+        /* =================================
            게임 오버
-        ========================= */
+        ================================= */
 
         #gameOverScreen {
             position: absolute;
@@ -202,7 +244,9 @@
             display: none;
 
             flex-direction: column;
+
             justify-content: center;
+
             align-items: center;
 
             background: rgba(0, 0, 0, 0.8);
@@ -213,7 +257,8 @@
         #gameOverTitle {
             color: #ff4444;
 
-            font-size: 32px;
+            font-size: 36px;
+
             font-weight: bold;
 
             margin-bottom: 20px;
@@ -221,20 +266,24 @@
 
         #finalScore {
             font-size: 20px;
+
             margin-bottom: 30px;
         }
 
         #restartButton {
-            width: 180px;
+            width: 190px;
             height: 60px;
 
             border: 3px solid white;
+
             border-radius: 15px;
 
             background: #222;
+
             color: white;
 
             font-size: 20px;
+
             font-weight: bold;
         }
     </style>
@@ -244,28 +293,58 @@
 
 <div id="gameContainer">
 
-    <canvas id="gameCanvas" width="400" height="500"></canvas>
+    <!-- =================================
+         게임 화면
+    ================================= -->
 
-    <!-- 시작 화면 -->
+    <canvas
+        id="gameCanvas"
+        width="500"
+        height="650">
+    </canvas>
+
+
+    <!-- =================================
+         시작 화면
+    ================================= -->
+
     <div id="startScreen">
-        <div id="startTitle">BULLET HELL</div>
+
+        <div id="startTitle">
+            BULLET HELL
+        </div>
 
         <button id="startButton">
             START GAME
         </button>
+
     </div>
 
-    <!-- 조이스틱 -->
+
+    <!-- =================================
+         조이스틱
+    ================================= -->
+
     <div id="joystick">
+
         <div id="joystickKnob"></div>
+
     </div>
 
-    <!-- 패링 버튼 -->
+
+    <!-- =================================
+         패링 버튼
+    ================================= -->
+
     <button id="parryButton">
         PARRY
     </button>
 
-    <!-- 게임 오버 -->
+
+    <!-- =================================
+         게임 오버
+    ================================= -->
+
     <div id="gameOverScreen">
 
         <div id="gameOverTitle">
@@ -284,26 +363,47 @@
 
 </div>
 
+
 <script>
 
     /* =========================================
        기본 설정
     ========================================= */
 
-    const canvas = document.getElementById("gameCanvas");
-    const ctx = canvas.getContext("2d");
+    const canvas =
+        document.getElementById("gameCanvas");
 
-    const startScreen = document.getElementById("startScreen");
-    const startButton = document.getElementById("startButton");
+    const ctx =
+        canvas.getContext("2d");
 
-    const joystick = document.getElementById("joystick");
-    const joystickKnob = document.getElementById("joystickKnob");
 
-    const parryButton = document.getElementById("parryButton");
+    /* =========================================
+       화면 요소
+    ========================================= */
 
-    const gameOverScreen = document.getElementById("gameOverScreen");
-    const finalScore = document.getElementById("finalScore");
-    const restartButton = document.getElementById("restartButton");
+    const startScreen =
+        document.getElementById("startScreen");
+
+    const startButton =
+        document.getElementById("startButton");
+
+    const joystick =
+        document.getElementById("joystick");
+
+    const joystickKnob =
+        document.getElementById("joystickKnob");
+
+    const parryButton =
+        document.getElementById("parryButton");
+
+    const gameOverScreen =
+        document.getElementById("gameOverScreen");
+
+    const finalScore =
+        document.getElementById("finalScore");
+
+    const restartButton =
+        document.getElementById("restartButton");
 
 
     /* =========================================
@@ -311,12 +411,15 @@
     ========================================= */
 
     let player = {
-        x: 200,
-        y: 450,
+
+        // 500 × 650 공간의 아래쪽 중앙
+        x: 250,
+
+        y: 580,
 
         radius: 8,
 
-        // 플레이어의 고정 이동 속도
+        // 플레이어 고정 이동 속도
         speed: 5
     };
 
@@ -337,17 +440,23 @@
 
 
     /* =========================================
-       조이스틱 변수
+       조이스틱
     ========================================= */
 
     let joystickX = 0;
+
     let joystickY = 0;
 
     let joystickActive = false;
 
     let joystickPointerId = null;
 
-    const joystickRadius = 60;
+    /*
+       90 × 90 조이스틱이므로
+       움직일 수 있는 반지름은 45
+    */
+
+    const joystickRadius = 45;
 
 
     /* =========================================
@@ -384,7 +493,11 @@
        게임 시작
     ========================================= */
 
-    startButton.addEventListener("click", startGame);
+    startButton.addEventListener(
+        "click",
+        startGame
+    );
+
 
     function startGame() {
 
@@ -410,8 +523,9 @@
 
     function resetGame() {
 
-        player.x = 200;
-        player.y = 450;
+        player.x = 250;
+
+        player.y = 580;
 
         bullets = [];
 
@@ -420,6 +534,7 @@
         score = 0;
 
         isGameOver = false;
+
 
         parry.active = false;
 
@@ -435,6 +550,7 @@
 
         parry.comboTimer = 0;
 
+
         joystickX = 0;
 
         joystickY = 0;
@@ -443,8 +559,10 @@
 
         joystickPointerId = null;
 
+
         joystickKnob.style.transform =
             "translate(-50%, -50%)";
+
 
         draw();
     }
@@ -473,70 +591,100 @@
        재시작
     ========================================= */
 
-    restartButton.addEventListener("click", function () {
+    restartButton.addEventListener(
+        "click",
+        function() {
 
-        gameOverScreen.style.display = "none";
+            gameOverScreen.style.display =
+                "none";
 
-        joystick.style.display = "block";
+            joystick.style.display =
+                "block";
 
-        parryButton.style.display = "block";
+            parryButton.style.display =
+                "block";
 
-        resetGame();
+            resetGame();
 
-        requestAnimationFrame(update);
-    });
+            requestAnimationFrame(update);
+        }
+    );
 
 
     /* =========================================
-       조이스틱 시작
+       조이스틱 터치 시작
     ========================================= */
 
-    joystick.addEventListener("pointerdown", function(e) {
+    joystick.addEventListener(
+        "pointerdown",
+        function(e) {
 
-        if (!isGameStarted || isGameOver) {
-            return;
+            if (
+                !isGameStarted ||
+                isGameOver
+            ) {
+                return;
+            }
+
+            joystickActive = true;
+
+            joystickPointerId =
+                e.pointerId;
+
+            joystick.setPointerCapture(
+                e.pointerId
+            );
+
+            updateJoystick(e);
         }
-
-        joystickActive = true;
-
-        joystickPointerId = e.pointerId;
-
-        joystick.setPointerCapture(e.pointerId);
-
-        updateJoystick(e);
-    });
+    );
 
 
     /* =========================================
-       조이스틱 움직임
+       조이스틱 움직이기
     ========================================= */
 
-    joystick.addEventListener("pointermove", function(e) {
+    joystick.addEventListener(
+        "pointermove",
+        function(e) {
 
-        if (!joystickActive) {
-            return;
+            if (!joystickActive) {
+                return;
+            }
+
+            if (
+                e.pointerId !==
+                joystickPointerId
+            ) {
+                return;
+            }
+
+            updateJoystick(e);
         }
-
-        if (e.pointerId !== joystickPointerId) {
-            return;
-        }
-
-        updateJoystick(e);
-    });
+    );
 
 
     /* =========================================
        조이스틱 손 떼기
     ========================================= */
 
-    joystick.addEventListener("pointerup", releaseJoystick);
+    joystick.addEventListener(
+        "pointerup",
+        releaseJoystick
+    );
 
-    joystick.addEventListener("pointercancel", releaseJoystick);
+    joystick.addEventListener(
+        "pointercancel",
+        releaseJoystick
+    );
 
 
     function releaseJoystick(e) {
 
-        if (e.pointerId !== joystickPointerId) {
+        if (
+            e.pointerId !==
+            joystickPointerId
+        ) {
             return;
         }
 
@@ -545,7 +693,9 @@
         joystickPointerId = null;
 
         joystickX = 0;
+
         joystickY = 0;
+
 
         joystickKnob.style.transform =
             "translate(-50%, -50%)";
@@ -558,50 +708,63 @@
 
     function updateJoystick(e) {
 
-        const rect = joystick.getBoundingClientRect();
+        const rect =
+            joystick.getBoundingClientRect();
+
 
         const centerX =
-            rect.left + rect.width / 2;
+            rect.left +
+            rect.width / 2;
 
         const centerY =
-            rect.top + rect.height / 2;
-
-        let dx = e.clientX - centerX;
-
-        let dy = e.clientY - centerY;
-
-        const distance =
-            Math.sqrt(dx * dx + dy * dy);
+            rect.top +
+            rect.height / 2;
 
 
-        /* 조이스틱 손잡이가 원 밖으로 나가지 않게 함 */
+        let dx =
+            e.clientX - centerX;
 
-        if (distance > joystickRadius) {
+        let dy =
+            e.clientY - centerY;
+
+
+        let distance =
+            Math.sqrt(
+                dx * dx +
+                dy * dy
+            );
+
+
+        /* 조이스틱 범위를 벗어나지 않게 함 */
+
+        if (
+            distance >
+            joystickRadius
+        ) {
 
             dx =
-                dx / distance *
+                dx /
+                distance *
                 joystickRadius;
 
             dy =
-                dy / distance *
+                dy /
+                distance *
                 joystickRadius;
         }
 
 
-        /* =====================================
-           중요한 부분
-
-           joystickX/Y는 방향만 저장한다.
-
-           플레이어 속도는 조이스틱 거리와
-           관계없이 항상 player.speed이다.
-        ===================================== */
+        /* 방향 계산 */
 
         if (distance > 5) {
 
-            joystickX = dx / joystickRadius;
+            joystickX =
+                dx /
+                joystickRadius;
 
-            joystickY = dy / joystickRadius;
+            joystickY =
+                dy /
+                joystickRadius;
 
         } else {
 
@@ -611,8 +774,13 @@
         }
 
 
+        /* 손잡이 이동 */
+
         joystickKnob.style.transform =
-            `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px))`;
+            `translate(
+                calc(-50% + ${dx}px),
+                calc(-50% + ${dy}px)
+            )`;
     }
 
 
@@ -620,18 +788,25 @@
        패링 버튼
     ========================================= */
 
-    parryButton.addEventListener("pointerdown", function(e) {
+    parryButton.addEventListener(
+        "pointerdown",
+        function(e) {
 
-        e.preventDefault();
+            e.preventDefault();
 
-        if (!isGameStarted || isGameOver) {
-            return;
+            if (
+                !isGameStarted ||
+                isGameOver
+            ) {
+                return;
+            }
+
+            if (!parry.cooldown) {
+
+                activateParry();
+            }
         }
-
-        if (!parry.cooldown) {
-            activateParry();
-        }
-    });
+    );
 
 
     function activateParry() {
@@ -656,13 +831,18 @@
 
     function spawnBullet() {
 
-        if (!isGameStarted || isGameOver) {
+        if (
+            !isGameStarted ||
+            isGameOver
+        ) {
             return;
         }
 
+
         bullets.push({
 
-            x: Math.random() *
+            x:
+                Math.random() *
                 canvas.width,
 
             y: 0,
@@ -682,10 +862,15 @@
 
     function update() {
 
-        if (!isGameStarted || isGameOver) {
+        if (
+            !isGameStarted ||
+            isGameOver
+        ) {
             return;
         }
 
+
+        /* 점수 */
 
         score++;
 
@@ -698,7 +883,9 @@
 
             parry.timer--;
 
-            if (parry.timer <= 0) {
+            if (
+                parry.timer <= 0
+            ) {
 
                 parry.active = false;
             }
@@ -713,7 +900,9 @@
 
             parry.cdTimer--;
 
-            if (parry.cdTimer <= 0) {
+            if (
+                parry.cdTimer <= 0
+            ) {
 
                 parry.cooldown = false;
             }
@@ -724,11 +913,15 @@
            콤보 시간
         ===================================== */
 
-        if (parry.comboTimer > 0) {
+        if (
+            parry.comboTimer > 0
+        ) {
 
             parry.comboTimer--;
 
-            if (parry.comboTimer <= 0) {
+            if (
+                parry.comboTimer <= 0
+            ) {
 
                 parry.combo = 0;
             }
@@ -738,14 +931,22 @@
         /* =====================================
            플레이어 이동
 
-           조이스틱의 방향만 사용하고
-           이동 속도는 항상 player.speed
+           ★ 중요 ★
 
-           따라서 조이스틱을 조금 당기든
-           많이 당기든 속도가 변하지 않는다.
+           조이스틱을 얼마나 당겼는지는
+           속도에 영향을 주지 않는다.
+
+           조이스틱은 방향만 결정하고,
+
+           실제 이동 속도는 항상
+           player.speed = 5
+
+           로 유지된다.
         ===================================== */
 
-        const joystickDeadZone = 0.2;
+        const joystickDeadZone =
+            0.2;
+
 
         const joystickLength =
             Math.sqrt(
@@ -754,13 +955,18 @@
             );
 
 
-        if (joystickLength > joystickDeadZone) {
+        if (
+            joystickLength >
+            joystickDeadZone
+        ) {
 
             const directionX =
-                joystickX / joystickLength;
+                joystickX /
+                joystickLength;
 
             const directionY =
-                joystickY / joystickLength;
+                joystickY /
+                joystickLength;
 
 
             player.x +=
@@ -774,42 +980,60 @@
 
 
         /* =====================================
-           플레이어 화면 밖으로 나가지 않게
+           플레이어 화면 밖 방지
         ===================================== */
 
-        if (player.x < player.radius) {
+        if (
+            player.x <
+            player.radius
+        ) {
 
             player.x =
                 player.radius;
         }
 
-        if (player.x >
-            canvas.width - player.radius) {
+
+        if (
+            player.x >
+            canvas.width -
+            player.radius
+        ) {
 
             player.x =
-                canvas.width - player.radius;
+                canvas.width -
+                player.radius;
         }
 
-        if (player.y < player.radius) {
+
+        if (
+            player.y <
+            player.radius
+        ) {
 
             player.y =
                 player.radius;
         }
 
-        if (player.y >
-            canvas.height - player.radius) {
+
+        if (
+            player.y >
+            canvas.height -
+            player.radius
+        ) {
 
             player.y =
-                canvas.height - player.radius;
+                canvas.height -
+                player.radius;
         }
 
 
         /* =====================================
-           탄환 처리
+           탄환
         ===================================== */
 
         for (
-            let i = bullets.length - 1;
+            let i =
+                bullets.length - 1;
             i >= 0;
             i--
         ) {
@@ -852,12 +1076,17 @@
                 bullets.splice(i, 1);
 
 
-                if (!parry.rewarded) {
+                if (
+                    !parry.rewarded
+                ) {
 
-                    parry.rewarded = true;
+                    parry.rewarded =
+                        true;
 
 
-                    if (parry.combo < 5) {
+                    if (
+                        parry.combo < 5
+                    ) {
 
                         parry.combo++;
                     }
@@ -872,7 +1101,8 @@
                         parry.combo;
 
 
-                    score += points;
+                    score +=
+                        points;
 
 
                     scorePopups.push({
@@ -910,15 +1140,19 @@
 
 
         /* =====================================
-           화면 밖 탄환 제거
+           화면 밖 탄환 삭제
         ===================================== */
 
         bullets =
-            bullets.filter(function(bullet) {
+            bullets.filter(
+                function(bullet) {
 
-                return bullet.y <
-                    canvas.height;
-            });
+                    return (
+                        bullet.y <
+                        canvas.height
+                    );
+                }
+            );
 
 
         /* =====================================
@@ -926,12 +1160,13 @@
         ===================================== */
 
         for (
-            let i = scorePopups.length - 1;
+            let i =
+                scorePopups.length - 1;
             i >= 0;
             i--
         ) {
 
-            scorePopups[i].y--;
+            scorePopups[i].y -= 1;
 
             scorePopups[i].life--;
 
@@ -944,6 +1179,8 @@
             }
         }
 
+
+        /* 화면 그리기 */
 
         draw();
 
@@ -982,10 +1219,12 @@
                 Math.PI * 2
             );
 
+
             ctx.fillStyle =
                 "rgba(180, 0, 255, 0.4)";
 
             ctx.fill();
+
 
             ctx.strokeStyle =
                 "#d8b4fe";
@@ -1024,40 +1263,44 @@
             "#ff4444";
 
 
-        bullets.forEach(function(bullet) {
+        bullets.forEach(
+            function(bullet) {
 
-            ctx.beginPath();
+                ctx.beginPath();
 
-            ctx.arc(
-                bullet.x,
-                bullet.y,
-                bullet.radius,
-                0,
-                Math.PI * 2
-            );
+                ctx.arc(
+                    bullet.x,
+                    bullet.y,
+                    bullet.radius,
+                    0,
+                    Math.PI * 2
+                );
 
-            ctx.fill();
-        });
+                ctx.fill();
+            }
+        );
 
 
         /* =====================================
            점수 팝업
         ===================================== */
 
-        scorePopups.forEach(function(popup) {
+        scorePopups.forEach(
+            function(popup) {
 
-            ctx.fillStyle =
-                "#ffff00";
+                ctx.fillStyle =
+                    "#ffff00";
 
-            ctx.font =
-                "bold 13px sans-serif";
+                ctx.font =
+                    "bold 13px sans-serif";
 
-            ctx.fillText(
-                popup.text,
-                popup.x - 30,
-                popup.y
-            );
-        });
+                ctx.fillText(
+                    popup.text,
+                    popup.x - 30,
+                    popup.y
+                );
+            }
+        );
 
 
         /* =====================================
@@ -1081,7 +1324,9 @@
            패링 상태
         ===================================== */
 
-        if (parry.cooldown) {
+        if (
+            parry.cooldown
+        ) {
 
             ctx.fillStyle =
                 "#ff6666";
@@ -1109,7 +1354,9 @@
            콤보
         ===================================== */
 
-        if (parry.combo > 0) {
+        if (
+            parry.combo > 0
+        ) {
 
             ctx.fillStyle =
                 "#ff00ff";
@@ -1125,9 +1372,10 @@
 
 
             const barWidth =
-                (parry.comboTimer /
-                parry.maxComboTimer) *
-                100;
+                (
+                    parry.comboTimer /
+                    parry.maxComboTimer
+                ) * 100;
 
 
             ctx.fillStyle =
@@ -1144,7 +1392,7 @@
 
 
     /* =========================================
-       탄환 자동 생성
+       탄환 생성 속도
     ========================================= */
 
     setInterval(
@@ -1154,7 +1402,7 @@
 
 
     /* =========================================
-       처음에는 게임 화면만 보여줌
+       게임 시작 전 화면
     ========================================= */
 
     draw();
